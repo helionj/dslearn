@@ -12,3 +12,5 @@ INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 2);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 1);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 2);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 3);
+
+INSERT INTO tb_course (name, img_uri, img_gray_uri) VALUES('Bootcamp HTML','https://c.pxhere.com/images/a5/f7/85056e666fe464c8c08a8f3b0b81-1439573.jpg!d','https://www.barrydequanne.com/wp-content/uploads/2015/04/13339786034_23cca915ee_o.jpg');
