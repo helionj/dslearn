@@ -1,0 +1,13 @@
+package com.devsuperior.dslearnbds.entities;
+
+public class Resource {
+
+	private Long id;
+	private String title;
+	private String description;
+	private Integer position;
+	private String imgUri;
+	private ResourceType type;
+	private String externalLink;
+	
+}
