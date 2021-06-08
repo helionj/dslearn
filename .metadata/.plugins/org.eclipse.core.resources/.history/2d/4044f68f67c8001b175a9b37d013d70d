@@ -1,0 +1,30 @@
+package com.devsuperior.dslearnbds.entities;
+
+import java.time.Instant;
+
+import com.devsuperior.dslearnbds.entities.pk.EnrollmentPK;
+
+public class Enrollment {
+	
+	private EnrollmentPK id = new EnrollmentPK();
+	private Instant enrollMoment;
+	private Instant refundMoment;
+	private boolean avaliable;
+	private boolean onlyUpdate;
+	
+	public Enrollment() {}
+
+	public Enrollment(User user, Offer offer, Instant enrollMoment, Instant refundMoment, boolean avaliable,
+			boolean onlyUpdate) {
+		super();
+		id.setUser(user);
+		id.setOffer(offer);
+		this.enrollMoment = enrollMoment;
+		this.refundMoment = refundMoment;
+		this.avaliable = avaliable;
+		this.onlyUpdate = onlyUpdate;
+	}
+	
+	
+	
+}
