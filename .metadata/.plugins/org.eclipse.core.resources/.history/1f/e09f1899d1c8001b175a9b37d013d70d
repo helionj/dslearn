@@ -26,7 +26,6 @@ public class Topic implements Serializable{
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
 	private String title;
-	@Column(columnDefinition= "TEXT")
 	private String body;
 	
 	@Column(columnDefinition= "TIMESTAMP WITHOUT TIME ZONE")
@@ -44,10 +43,6 @@ public class Topic implements Serializable{
 	@JoinColumn(name = "offer_id")
 	private Offer offer;
 	
-	@ManyToOne
-	@JoinColumn(name = "reply_id")
-	private Reply answer;
-	
 	@ManyToMany
 	@JoinTable(name = "tb_topic_likes",
 			joinColumns = @JoinColumn(name="topic_id"),
@@ -55,11 +50,10 @@ public class Topic implements Serializable{
 	private Set<User> likes = new HashSet<>();
 	
 	
-	
 	public Topic() {}
 
 
-	public Topic(Long id, String title, String body, Instant moment, Lesson lesson, User author, Offer offer, Reply answer) {
+	public Topic(Long id, String title, String body, Instant moment, Lesson lesson, User author, Offer offer) {
 		
 		this.id = id;
 		this.title = title;
@@ -68,7 +62,6 @@ public class Topic implements Serializable{
 		this.lesson = lesson;
 		this.author = author;
 		this.offer = offer;
-		this.answer = answer;
 	}
 
 
@@ -139,16 +132,6 @@ public class Topic implements Serializable{
 
 	public void setOffer(Offer offer) {
 		this.offer = offer;
-	}
-
-
-	public Reply getAnswer() {
-		return answer;
-	}
-
-
-	public void setAnswer(Reply answer) {
-		this.answer = answer;
 	}
 
 

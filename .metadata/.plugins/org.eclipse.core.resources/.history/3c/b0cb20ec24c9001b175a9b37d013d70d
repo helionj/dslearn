@@ -59,7 +59,7 @@ public class Topic implements Serializable{
 	public Topic() {}
 
 
-	public Topic(Long id, String title, String body, Instant moment, Lesson lesson, User author, Offer offer, Reply answer) {
+	public Topic(Long id, String title, String body, Instant moment, Lesson lesson, User author, Offer offer) {
 		
 		this.id = id;
 		this.title = title;
@@ -68,7 +68,6 @@ public class Topic implements Serializable{
 		this.lesson = lesson;
 		this.author = author;
 		this.offer = offer;
-		this.answer = answer;
 	}
 
 
@@ -139,16 +138,6 @@ public class Topic implements Serializable{
 
 	public void setOffer(Offer offer) {
 		this.offer = offer;
-	}
-
-
-	public Reply getAnswer() {
-		return answer;
-	}
-
-
-	public void setAnswer(Reply answer) {
-		this.answer = answer;
 	}
 
 
