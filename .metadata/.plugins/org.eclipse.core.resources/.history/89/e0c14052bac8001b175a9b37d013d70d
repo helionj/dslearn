@@ -1,0 +1,14 @@
+package com.devsuperior.dslearnbds.entities;
+
+import java.time.Instant;
+
+public class Deliver {
+
+	private Long id;
+	private String uri;
+	private Instant moment;
+	private DeliverStatus status;
+	private String feedback;
+	private Integer correctCount;
+	
+}

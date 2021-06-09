@@ -1,0 +1,28 @@
+package com.devsuperior.dslearnbds.entities.enums;
+
+public enum DeliverStatus {
+	LESSON_ONLY(1),
+	LESSON_TASK(2),
+	FORUM(3),
+	EXTERNAL_LINK(4);
+	
+	private int code;
+	
+	private DeliverStatus(int code) {
+		this.code = code;
+	}
+	
+	public int getCode() {
+		return code;
+	}
+	
+	public static DeliverStatus valueOf(int code) {
+		for(DeliverStatus value: DeliverStatus.values()) {
+			if(code == value.getCode()) {
+				return value;
+			}
+		}
+		throw new IllegalArgumentException("Invalid argument ResourceType code");
+	}
+
+}
