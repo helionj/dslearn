@@ -75,7 +75,9 @@ public class Notification implements Serializable{
 	public void setRead(boolean read) {
 		this.read = read;
 	}
-	
+	public boolean getRead() {
+		return read;
+	}
 
 	public String getRoute() {
 		return route;

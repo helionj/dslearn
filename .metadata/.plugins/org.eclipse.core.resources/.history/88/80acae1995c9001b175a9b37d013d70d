@@ -1,0 +1,39 @@
+package com.devsuperior.dslearnbds.dtos;
+
+import java.time.Instant;
+
+import com.devsuperior.dslearnbds.entities.Notification;
+
+public class NotificationDTO {
+	
+	private Long id;
+	private String text;
+	private Instant moment;
+	private boolean read;
+	private String route;
+	private Long userId;
+	
+	public NotificationDTO() {}
+
+	public NotificationDTO(Long id, String text, Instant moment, boolean read, String route, Long userId) {
+		super();
+		this.id = id;
+		this.text = text;
+		this.moment = moment;
+		this.read = read;
+		this.route = route;
+		this.userId = userId;
+	}
+	
+	public NotificationDTO(Notification entity) {
+		
+		id = entity.getId();
+		text = entity.getText();
+		moment = entity.getMoment();
+		read = entity.isRead();
+		route = entity.getRoute();
+		userId = entity.getUser().getId();
+	}
+	
+	
+}
