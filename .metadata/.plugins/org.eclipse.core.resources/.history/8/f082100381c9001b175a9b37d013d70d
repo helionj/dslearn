@@ -1,0 +1,27 @@
+package com.devsuperior.dslearnbds.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.devsuperior.dslearnbds.entities.User;
+import com.devsuperior.dslearnbds.repositories.UserRepository;
+import com.devsuperior.dslearnbds.services.exceptions.UnauthorizedException;
+
+public class AuthService {
+
+	@Autowired
+	private UserRepository repository;
+	
+	@Transactional
+	public User authenticated() {
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		try {
+			return repository.findByEmail(username);
+		}
+		catch(Exception e) {
+			throw new UnauthorizedException("Invalid user");
+		}
+	}
+}

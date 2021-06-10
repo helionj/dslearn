@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.devsuperior.dslearnbds.services.exceptions.DataBaseException;
 import com.devsuperior.dslearnbds.services.exceptions.ForbiddenException;
 import com.devsuperior.dslearnbds.services.exceptions.ResourceNotFoundException;
-import com.devsuperior.dslearnbds.services.exceptions.UnauthorizedException;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
@@ -61,17 +60,35 @@ public class ResourceExceptionHandler {
 	}
 	
 	@ExceptionHandler(ForbiddenException.class)
-	public ResponseEntity<OAuthCustomError> forbiddenException(ForbiddenException e, HttpServletRequest request){
-		OAuthCustomError err = new OAuthCustomError("Forbidden", e.getMessage());
-	
-		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(err);
+	public ResponseEntity<ValidationError> validationException(ForbiddenException e, HttpServletRequest request){
+		HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
+		ValidationError err = new ValidationError();
+		err.setTimestamp(Instant.now());
+		err.setStatus(status.value());
+		err.setError("Validation exception");
+		err.setMessage(e.getMessage());
+		err.setPath(request.getRequestURI());
+		
+		for(FieldError f: e.getBindingResult().getFieldErrors()) {
+			err.addErrors(f.getField(), f.getDefaultMessage());
+		}
+		return ResponseEntity.status(status).body(err);
 	}
 	
 	@ExceptionHandler(UnauthorizedException.class)
-	public ResponseEntity<OAuthCustomError> unauthorizedException(UnauthorizedException e, HttpServletRequest request){
-		OAuthCustomError err = new OAuthCustomError("Unauthorized", e.getMessage());
+	public ResponseEntity<ValidationError> validationException(UnauthorizedException e, HttpServletRequest request){
+		HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
+		ValidationError err = new ValidationError();
+		err.setTimestamp(Instant.now());
+		err.setStatus(status.value());
+		err.setError("Validation exception");
+		err.setMessage(e.getMessage());
+		err.setPath(request.getRequestURI());
 		
-		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(err);
+		for(FieldError f: e.getBindingResult().getFieldErrors()) {
+			err.addErrors(f.getField(), f.getDefaultMessage());
+		}
+		return ResponseEntity.status(status).body(err);
 	}
 
 }
